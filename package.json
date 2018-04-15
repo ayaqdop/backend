@@ -4,23 +4,34 @@
   "description": "Backend for Ayaqdop chess-like football board game",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node index"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ayaqdop/backend.git"
   },
   "keywords": [
-    "chess",
+    "ayaqdop",
     "football",
+    "chess",
+    "soccer",
     "Kazakhstan",
-    "board",
-    "game"
+    "board game"
   ],
   "author": "Olzhas Askar",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ayaqdop/backend/issues"
   },
-  "homepage": "https://github.com/ayaqdop/backend#readme"
+  "homepage": "https://github.com/ayaqdop/backend#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "socket.io": "^2.1.0"
+  },
+  "devDependencies": {
+    "jest": "^22.4.3"
+  }
 }
