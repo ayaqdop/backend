@@ -1,0 +1,26 @@
+{
+  "name": "ayaqdop-backend",
+  "version": "1.0.0",
+  "description": "Backend for Ayaqdop chess-like football board game",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayaqdop/backend.git"
+  },
+  "keywords": [
+    "chess",
+    "football",
+    "Kazakhstan",
+    "board",
+    "game"
+  ],
+  "author": "Olzhas Askar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ayaqdop/backend/issues"
+  },
+  "homepage": "https://github.com/ayaqdop/backend#readme"
+}
