@@ -32,7 +32,7 @@ app.post("/init", (req, res) => {
 
   const gameObjects = {
     teams: [{
-      name: "FC Barcelona",
+      name: "Barcelona",
       players: [
         { number: 1,  position: [1, 8] },
         { number: 18, position: [6, 3] },
@@ -48,7 +48,7 @@ app.post("/init", (req, res) => {
       ]
     },
     {
-      name: "FC Bayern",
+      name: "Bayern",
       players: [
         { number: 1,   position: [24, 9] },
         { number: 32,  position: [19, 3] },
