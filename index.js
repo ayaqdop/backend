@@ -11,8 +11,12 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.set({
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+  });
+  res.type("json");
+  res.status(200);
   next();
 });
 
@@ -21,15 +25,11 @@ app.get('/game/:name', (req, res, next) => {
 });
 
 app.post("/uuid", (req, res) => {
-  res.status = 200;
   const id = uuidv4();
-  res.send({ uuid: id });
+  res.json({ uuid: id });
 });
 
 app.post("/init", (req, res) => {
-  res.status = 200;
-  res.setHeader("Content-Type", "application/json");
-
   const gameObjects = {
     teams: [{
       name: "Barcelona",
