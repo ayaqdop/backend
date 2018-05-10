@@ -43,8 +43,8 @@ app.post("/init", (req, res) => {
         { number: 5,  position: [8, 8] },
         { number: 4,  position: [10, 12] },
         { number: 14, position: [12, 4] },
-        { number: 9,  position: [12, 8] },
         { number: 10, position: [12, 13] },
+        { number: 9,  position: [12, 8] },
       ]
     },
     {
@@ -59,8 +59,8 @@ app.post("/init", (req, res) => {
         { number: 6,   position: [18, 9] },
         { number: 11,  position: [16, 13] },
         { number: 10,  position: [13, 14] },
-        { number: 9,   position: [15, 8] },
         { number: 7,   position: [13, 3] },
+        { number: 9,   position: [15, 8] },
       ]
     }]
   };
