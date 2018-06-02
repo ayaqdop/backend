@@ -11,9 +11,12 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
+  const origin = req.headers.origin;
+  res.set("Access-Control-Allow-Origin", origin);
   res.set({
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+    "Access-Control-Allow-Credentials": true,
+    "Access-Control-Allow-Methods": "POST",
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   });
   res.type("json");
   res.status(200);
