@@ -20,13 +20,10 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/game/:name', (req, res, next) => {
-  res.end('Hi ' + req.params.name +'!');
-});
-
 app.post("/uuid", (req, res) => {
   const id = uuidv4();
-  res.json({ uuid: id });
+  res.cookie("uuid", id);
+  res.send();
 });
 
 app.post("/init", (req, res) => {
