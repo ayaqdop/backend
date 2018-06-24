@@ -7,6 +7,8 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const uuidv4 = require('uuid/v4');
 
+const gamers = [];
+
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 
@@ -76,17 +78,21 @@ app.post("/init", (req, res) => {
   res.json(gameObjects);
 })
 
-io.on('connection', socket => {
+io.on("connection", socket => {
+  socket.on("new gamer", msg => {
+    console.log(`New gamer ${msg} joined`);
+    socket.gamer = msg;
+    gamers.push(msg);
+  });
+
   socket.on("server", msg => {
-    console.log("Serving messages: " + msg);
+    console.log(`Serving messages: ${msg}`);
     io.emit("client", msg);
   });
 
-  socket.on("uuid", () => {
-    const id = uuidv4();
-    console.log("Asking for uuid. Here it is: " + id);
-    io.emit("generateUuid", id);
-  });
+  socket.on("disconnect", msg => {
+    console.log(`${socket.gamer} left us`);
+  })
 });
 
 server.listen(process.env.PORT || 8080);
