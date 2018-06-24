@@ -92,6 +92,7 @@ io.on("connection", socket => {
 
   socket.on("disconnect", msg => {
     console.log(`${socket.gamer} left us`);
+    gamers.splice(gamers.indexOf(msg), 1);
   })
 });
 
