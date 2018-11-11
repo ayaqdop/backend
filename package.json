@@ -27,13 +27,13 @@
   },
   "homepage": "https://github.com/ayaqdop/backend#readme",
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
     "morgan": "^1.9.1",
-    "socket.io": "^2.1.0",
-    "uuid": "^3.2.1"
+    "socket.io": "^2.1.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "jest": "^22.4.3"
+    "jest": "^22.4.4"
   }
 }
