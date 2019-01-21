@@ -28,6 +28,7 @@
   "homepage": "https://github.com/ayaqdop/backend#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "crypto-js": "^3.1.9-1",
     "express": "^4.16.4",
     "mongodb": "3.1.12",
     "morgan": "^1.9.1",
