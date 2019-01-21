@@ -26,6 +26,7 @@ app.use(function(req, res, next) {
 });
 
 app.post("/uuid", (req, res) => {
+  console.log(JSON.stringify(req.body));
   const id = uuidv4();
   res.cookie("uuid", id);
   res.send();
@@ -80,9 +81,10 @@ app.post("/init", (req, res) => {
 
 io.on("connection", socket => {
   socket.on("new gamer", msg => {
-    console.log(`New gamer ${msg} joined`);
-    socket.gamer = msg;
-    gamers.push(msg);
+    const user = JSON.stringify(msg);
+    console.log(`New gamer ${user} joined`);
+    socket.gamer = user;
+    gamers.push(user);
   });
 
   socket.on("server", msg => {
