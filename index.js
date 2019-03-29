@@ -6,7 +6,6 @@ const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const uuidv4 = require("uuid/v4");
-const users = require("./routes/users.js");
 
 const gamers = [];
 
@@ -26,8 +25,6 @@ app.use((req, res, next) => {
   res.status(200);
   next();
 });
-
-app.use(users);
 
 app.post("/uuid", (req, res) => {
   console.log(JSON.stringify(req.body));
