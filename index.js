@@ -26,6 +26,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.send("Backend started");
+});
+
 app.post("/uuid", (req, res) => {
   console.log(JSON.stringify(req.body));
   const id = uuidv4();
@@ -101,4 +105,4 @@ io.on("connection", socket => {
   });
 });
 
-server.listen(process.env.PORT || 8080);
+server.listen(process.env.PORT || 8080, () => console.log("Backend started"));
