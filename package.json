@@ -36,6 +36,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "jest": "^22.4.4"
+    "jest": "^22.4.4",
+    "nodemon": "^1.18.11"
   }
 }
