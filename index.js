@@ -1,47 +1,54 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
-const bodyParser = require("body-parser");
-const morgan = require("morgan");
-const uuidv4 = require("uuid/v4");
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const uuidv4 = require('uuid/v4');
 
 const gamers = [];
 
-app.use(morgan("dev"));
+const letsEncryptReponse = process.env.CERTBOT_RESPONSE;
+
+// Return the Let's Encrypt certbot response:
+app.get('/.well-known/acme-challenge/:content', function(req, res) {
+  res.send(letsEncryptReponse);
+});
+
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
-  res.set("Access-Control-Allow-Origin", origin);
+  res.set('Access-Control-Allow-Origin', origin);
   res.set({
-    "Access-Control-Allow-Credentials": true,
-    "Access-Control-Allow-Methods": "POST",
-    "Access-Control-Allow-Headers":
-      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    'Access-Control-Allow-Credentials': true,
+    'Access-Control-Allow-Methods': 'POST',
+    'Access-Control-Allow-Headers':
+      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   });
-  res.type("json");
+  res.type('json');
   res.status(200);
   next();
 });
 
-app.get("/", (req, res) => {
-  res.send("Backend started");
+app.get('/', (req, res) => {
+  res.send('Backend started');
 });
 
-app.post("/uuid", (req, res) => {
+app.post('/uuid', (req, res) => {
   console.log(JSON.stringify(req.body));
   const id = uuidv4();
-  res.cookie("uuid", id);
+  res.cookie('uuid', id);
   res.send();
 });
 
-app.post("/init", (req, res) => {
+app.post('/init', (req, res) => {
   const gameObjects = {
     teams: [
       {
-        name: "Barcelona",
+        name: 'Barcelona',
         players: [
           { number: 1, position: [1, 8] },
           { number: 18, position: [6, 3] },
@@ -57,7 +64,7 @@ app.post("/init", (req, res) => {
         ]
       },
       {
-        name: "Bayern",
+        name: 'Bayern',
         players: [
           { number: 1, position: [24, 9] },
           { number: 32, position: [19, 3] },
@@ -86,23 +93,23 @@ app.post("/init", (req, res) => {
   res.json(gameObjects);
 });
 
-io.on("connection", socket => {
-  socket.on("new gamer", msg => {
+io.on('connection', socket => {
+  socket.on('new gamer', msg => {
     const user = JSON.stringify(msg);
     console.log(`New gamer ${user} joined`);
     socket.gamer = user;
     gamers.push(user);
   });
 
-  socket.on("server", msg => {
+  socket.on('server', msg => {
     console.log(`Serving messages: ${msg}`);
-    io.emit("client", msg);
+    io.emit('client', msg);
   });
 
-  socket.on("disconnect", msg => {
+  socket.on('disconnect', msg => {
     console.log(`${socket.gamer} left us`);
     gamers.splice(gamers.indexOf(msg), 1);
   });
 });
 
-server.listen(process.env.PORT || 8080, () => console.log("Backend started"));
+server.listen(process.env.PORT || 8080, () => console.log('Backend started'));
