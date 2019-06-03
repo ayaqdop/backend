@@ -124,6 +124,6 @@ const port = process.env.PORT || 44300;
 server.listen(port, () => console.log('Backend started'));
 
 httpapp.get('*', (req, res) => {
-  res.redirect(`https://127.0.0.1:8080${port}${req.url}`);
+  res.redirect(`https://127.0.0.1:${port}${req.url}`);
 });
 httpserver.listen(5000);
