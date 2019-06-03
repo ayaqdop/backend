@@ -1,6 +1,8 @@
 const fs = require('fs');
 const express = require('express');
 const app = express();
+const httpapp = express();
+const httpserver = require('http').createServer(httpapp);
 
 const options = {
   key: fs.readFileSync('./cert/privkey.pem'),
@@ -118,4 +120,10 @@ io.on('connection', socket => {
   });
 });
 
-server.listen(process.env.PORT || 44300, () => console.log('Backend started'));
+const port = process.env.PORT || 44300;
+server.listen(port, () => console.log('Backend started'));
+
+httpapp.get('*', (req, res) => {
+  res.redirect(`https://127.0.0.1:8080${port}${req.url}`);
+});
+httpserver.listen(5000);
