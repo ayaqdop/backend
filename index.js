@@ -118,4 +118,4 @@ io.on('connection', socket => {
   });
 });
 
-server.listen(process.env.PORT || 8080, () => console.log('Backend started'));
+server.listen(process.env.PORT || 44300, () => console.log('Backend started'));
