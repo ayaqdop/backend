@@ -1,6 +1,12 @@
+const fs = require('fs');
 const express = require('express');
 const app = express();
-const server = require('http').createServer(app);
+
+const options = {
+  key: fs.readFileSync('./cert/privkey.pem'),
+  cert: fs.readFileSync('./cert/fullchain.pem')
+};
+const server = require('https').createServer(options, app);
 const io = require('socket.io')(server);
 
 const bodyParser = require('body-parser');
