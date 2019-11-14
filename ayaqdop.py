@@ -27,7 +27,7 @@ def create_uuid():
         "connection_time": datetime.now()
     })
     response = make_response()
-    response.set_cookie("uuid", id, secure=True, httponly=True, samesite=None)
+    response.headers.add("Set-Cookie", f"uuid={id}; SameSite=None; Secure")
     return response
 
 @app.route("/init", methods=["POST"])
