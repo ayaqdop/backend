@@ -26,8 +26,7 @@ def create_uuid():
         "in_game": False,
         "connection_time": datetime.now()
     })
-    response = make_response()
-    response.headers.add("Set-Cookie", f"uuid={id}; SameSite=None; Secure")
+    response = make_response(jsonify({"uuid": id}))
     return response
 
 @app.route("/init", methods=["POST"])
